@@ -10,9 +10,6 @@ class Ship:
         self.screen = alien_invas.screen
         self.screen_rect = alien_invas.screen.get_rect()
         self.settings = Settings()
-        # Movement flag
-        self.moving_right = False
-        self.moving_left = False
 
         # Load he ship Image
         self.image_load = pygame.image.load("images/ship2.png")
@@ -20,10 +17,14 @@ class Ship:
         self.image = pygame.transform.scale(self.image_load, (100, 180))
 
         self.rect = self.image.get_rect()
-        self.x_position = float(self.rect.x)
-
         # Start each new ship at the bottom center of the screen.
         self.rect.midbottom = self.screen_rect.midbottom
+
+        self.x_position = float(self.rect.x)
+
+        # Movement flag
+        self.moving_right = False
+        self.moving_left = False
 
     def update(self):
         """Update the ship position based on the movement flag"""
