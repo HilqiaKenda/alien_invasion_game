@@ -11,6 +11,7 @@ class Bullet(Sprite):
         self.screen = inav_game.screen
         self.settings = inav_game.settings
         self.color = self.settings.bullet_color
+        self.fire_bullet = False
 
         # Create a bullet rect at (0, 0) and then set correct position.
         self.rect = pygame.Rect(
@@ -25,6 +26,10 @@ class Bullet(Sprite):
 
         self.y_position -= self.settings.bullet_speed
         self.rect.y = self.y_position
+
+        if self.fire_bullet:
+            pass
+            # self._fire_bullet()
 
     def draw_bullet(self):
         """Draw the bullet on the screen"""

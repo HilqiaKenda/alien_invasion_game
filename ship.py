@@ -13,7 +13,6 @@ class Ship:
 
         # Load he ship Image
         self.image_load = pygame.image.load("images/ship2.png")
-        # original_image = pygame.image.load("images/ship2.png")
         self.image = pygame.transform.scale(self.image_load, (100, 180))
 
         self.rect = self.image.get_rect()

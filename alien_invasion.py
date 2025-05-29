@@ -1,5 +1,6 @@
 import sys
 import pygame
+from aliens import Alien
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -24,6 +25,7 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.alien = Alien(self)
 
         self.moving_right = False
         self.moving_left = False
@@ -37,6 +39,7 @@ class AlienInvasion:
             self.bullets.update()
             self._get_ride_of_bullet()
             self._updat_screen()
+            self.alien.blitme
 
     def _get_ride_of_bullet(self):
         """Remove fired bullets after reaching to the top"""
@@ -66,7 +69,8 @@ class AlienInvasion:
                 sys.exit()
 
             elif event.key == pygame.K_SPACE:
-                self._fire_bullet()
+                self.bullet = Bullet(self).fire_bullet
+                self.bullet = True
 
     def _check_keyup_event(self, event):
         """Respond to key up"""
@@ -76,6 +80,9 @@ class AlienInvasion:
 
             elif event.key == pygame.K_LEFT:
                 self.ship.moving_left = False
+            elif event.key == pygame.K_SPACE:
+                # self.fire_bullet = False
+                self._fire_bullet()
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the new bullet group"""
