@@ -15,10 +15,24 @@ class AlienInvasion:
 
         self.settings = Settings()
         self.aliens = pygame.sprite.Group()
+        print("Please select the screen mode to play the game 'any to quit'")
+        print("\t1. Fullscreen mode\n\t2. adjust mode")
+        self.screen_size = int(input("Enter your screen size mode (1 or 2): "))
+        self.screen = ''
 
         # Screen settigs
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))
+        if self.screen_size == 1:
+            # Fullscreen
+            self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+        elif self.screen_size == 2:
+            # Screen size 1900 x 1300
+            self.screen = pygame.display.set_mode(
+                (self.settings.screen_width, self.settings.screen_height))
+
+        else:
+            sys.exit()
+
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
 
@@ -116,11 +130,11 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
 
-        # Get x position to set a row of fleet of aliens
+        # Get available space of with of the game board
         alien.x = alien_width + 2 * alien_width * number_of_alien
         alien.rect.x = alien.x
 
-        # Get y position of everything to set rows
+        # Get available space of height of the game board
         alien.y = alien_height + 2 * alien_height * row_nnumber
         alien.rect.y = alien.y
 
@@ -142,4 +156,5 @@ class AlienInvasion:
 
 if __name__ == "__main__":
     alien_invasion = AlienInvasion()
+    alien_invasion.screen_size
     alien_invasion.run_game()
