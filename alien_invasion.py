@@ -52,6 +52,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+            self._update_alien()
             self._get_ride_of_bullet()
             self._updat_screen()
 
@@ -152,6 +153,10 @@ class AlienInvasion:
 
         # make the most recently drawn screen visible
         pygame.display.flip()
+
+    def _update_alien(self):
+        """ Update the positions of all aliens in the fleet. """
+        self.alien.update()
 
 
 if __name__ == "__main__":
